@@ -9,7 +9,7 @@
     <h1>Explorar Música</h1>
   </div>
 
-  <div class="track-list-container" *ngIf="hasTracks() && !isLoading">
+  <div class="track-list-container" *ngIf="!isLoading && hasTracks()">
     <h3 class="section-subtitle">Recomendado para ti</h3>
     <div class="track-list">
       <div class="track-item" *ngFor="let track of tracks; let i = index" [class.active]="isCurrentTrack(track)"

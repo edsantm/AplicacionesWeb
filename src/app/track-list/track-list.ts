@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MusicStateService } from '../services/music-state';
 import { Track } from '../models/track.models';
+import { Album } from '../models/album.model';
+import { Artist } from '../models/artist.model';
 
 @Component({
   selector: 'app-track-list',

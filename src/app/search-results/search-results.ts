@@ -11,6 +11,8 @@ import { Artist } from '../models/artist.model';
 import { FormsModule } from '@angular/forms';
 import { SearchBar } from '../search-bar/search-bar';
 
+type FilterType = 'all' | 'track' | 'artist' | 'album';
+
 @Component({
   selector: 'app-search-results',
   standalone: true,
@@ -19,6 +21,7 @@ import { SearchBar } from '../search-bar/search-bar';
   styleUrls: ['./search-results.css']
 })
 export class SearchResultsComponent implements OnInit, OnDestroy {
+  // Raw results from service
   searchResults: SearchResult = {
     tracks: [],
     albums: [],
@@ -26,6 +29,13 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     hasResults: false,
     isEmpty: true
   };
+
+  // Filtered and Slipped results for display
+  displayTracks: Track[] = [];
+  displayAlbums: Album[] = [];
+  displayArtists: Artist[] = [];
+
+  // displayTracks/Albums/Artists properties remain
 
   searchTerm: string = '';
   isSearching: boolean = false;
@@ -40,6 +50,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const resultsSub = this.musicState.searchResults$.subscribe(results => {
       this.searchResults = results;
+      this.applyLimits();
     });
 
     const termSub = this.musicState.searchTerm$.subscribe(term => {
@@ -51,6 +62,14 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     });
 
     this.subscriptions.push(resultsSub, termSub, searchingSub);
+  }
+
+  private applyLimits(): void {
+    // Always apply strict limits as per user request:
+    // 1 Artist, 6 Albums, 5 Songs
+    this.displayArtists = this.searchResults.artists.slice(0, 1);
+    this.displayAlbums = this.searchResults.albums.slice(0, 6);
+    this.displayTracks = this.searchResults.tracks.slice(0, 5);
   }
 
   selectTrack(track: Track): void {
@@ -68,9 +87,8 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
       console.error('Álbum inválido');
       return;
     }
-
-    this.musicState.selectAlbum(album);
-    this.router.navigate(['/player']);
+    // Navigate to dedicated Album page
+    this.router.navigate(['/album', album.id]);
   }
 
   selectArtist(artist: Artist): void {
@@ -78,9 +96,8 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
       console.error('Artista inválido');
       return;
     }
-
-    this.musicState.selectArtist(artist);
-    this.router.navigate(['/player']);
+    // Navigate to dedicated Artist page
+    this.router.navigate(['/artist', artist.id]);
   }
 
   getImageUrl(item: Track | Album | Artist): string {

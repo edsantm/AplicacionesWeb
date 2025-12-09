@@ -9,13 +9,13 @@
   </div>
 
   <div class="results-container"
-    *ngIf="searchResults && (searchResults.tracks.length > 0 || searchResults.albums.length > 0 || searchResults.artists.length > 0) && !isSearching">
+    *ngIf="!isSearching && (displayTracks.length > 0 || displayAlbums.length > 0 || displayArtists.length > 0)">
 
-    <!-- Canciones Section -->
-    <div class="section-block" *ngIf="searchResults.tracks.length > 0">
+    <!-- Canciones Section (First) -->
+    <div class="section-block" *ngIf="displayTracks.length > 0">
       <h2 class="section-title">Canciones</h2>
       <div class="track-list">
-        <div class="track-item" *ngFor="let track of searchResults.tracks" (click)="selectTrack(track)">
+        <div class="track-item" *ngFor="let track of displayTracks" (click)="selectTrack(track)">
           <div class="track-left">
             <img [src]="getImageUrl(track)" alt="Album Art" class="track-art">
             <div class="track-info">
@@ -30,11 +30,11 @@
       </div>
     </div>
 
-    <!-- Artistas Section -->
-    <div class="section-block" *ngIf="searchResults.artists.length > 0">
+    <!-- Artistas Section (Second) -->
+    <div class="section-block" *ngIf="displayArtists.length > 0">
       <h2 class="section-title">Artistas</h2>
       <div class="artist-grid">
-        <div class="artist-card" *ngFor="let artist of searchResults.artists" (click)="selectArtist(artist)">
+        <div class="artist-card" *ngFor="let artist of displayArtists" (click)="selectArtist(artist)">
           <div class="artist-art-wrapper">
             <img [src]="getImageUrl(artist)" alt="Artist Profile" class="artist-image">
           </div>
@@ -46,11 +46,11 @@
       </div>
     </div>
 
-    <!-- Albumes Section -->
-    <div class="section-block" *ngIf="searchResults.albums.length > 0">
+    <!-- Albumes Section (Third) -->
+    <div class="section-block" *ngIf="displayAlbums.length > 0">
       <h2 class="section-title">Álbumes</h2>
       <div class="album-grid">
-        <div class="album-card" *ngFor="let album of searchResults.albums" (click)="selectAlbum(album)">
+        <div class="album-card" *ngFor="let album of displayAlbums" (click)="selectAlbum(album)">
           <div class="album-art-wrapper">
             <img [src]="getImageUrl(album)" alt="Album Cover" class="album-cover">
           </div>
@@ -66,7 +66,7 @@
 
   <!-- Empty State / Default -->
   <div class="empty-state"
-    *ngIf="!isSearching && (!searchResults || (!searchResults.tracks.length && !searchResults.albums.length && !searchResults.artists.length))">
+    *ngIf="!isSearching && displayTracks.length === 0 && displayAlbums.length === 0 && displayArtists.length === 0">
     <div class="empty-icon">
       <svg viewBox="0 0 24 24" fill="currentColor" width="64" height="64">
         <path

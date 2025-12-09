@@ -47,7 +47,7 @@ export class SpotifyApiService {
     return throwError(() => new Error(errorMessage));
   }
 
-  public search(query: string, limit: number = 3): Observable<SearchResult> {
+  public search(query: string, limit: number = 15): Observable<SearchResult> {
     if (!query || query.trim().length === 0) {
       return of(SearchResultMapper.createEmpty());
     }
@@ -177,6 +177,38 @@ export class SpotifyApiService {
       }),
       catchError(error => {
         this.handleError(error, 'obtener top tracks del artista').subscribe();
+        return of([]);
+      })
+    );
+  }
+
+  public getArtistAlbums(artistId: string): Observable<Album[]> {
+    if (!artistId) {
+      return of([]);
+    }
+
+    return this.waitForToken().pipe(
+      switchMap(token => {
+        const url = `${this.API_URL}/artists/${artistId}/albums`;
+        const params = {
+          include_groups: 'album,single',
+          limit: '10',
+          market: 'MX'
+        };
+
+        return this.http.get<any>(url, {
+          headers: new HttpHeaders({ 'Authorization': `Bearer ${token}` }),
+          params
+        });
+      }),
+      map(response => {
+        if (!response || !response.items) {
+          return [];
+        }
+        return response.items.map((album: any) => AlbumMapper.fromSpotifyAlbum(album));
+      }),
+      catchError(error => {
+        console.error('Error getting artist albums:', error);
         return of([]);
       })
     );

@@ -8,9 +8,45 @@
 .header {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 24px;
   margin-bottom: 24px;
+  padding: 24px 0;
 }
+
+.header-image-large {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  /* Artist circle */
+  object-fit: cover;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.album-header .header-image-large {
+  border-radius: 4px;
+  /* Album square */
+}
+
+.header-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.header-sub {
+  color: #b3b3b3;
+  font-size: 1rem;
+  margin-top: 8px;
+}
+
 
 .header h1 {
   font-size: 32px;
@@ -143,4 +179,75 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* --- Artist Albums Section --- */
+
+.artist-albums-section {
+  margin-bottom: 32px;
+}
+
+.albums-scroll-container {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+}
+
+/* Scrollbar styling for albums */
+.albums-scroll-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.albums-scroll-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.albums-scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+.album-card-mini {
+  min-width: 140px;
+  width: 140px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 12px;
+  border-radius: 8px;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.album-card-mini:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.album-mini-art {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.album-mini-info {
+  overflow: hidden;
+}
+
+.album-mini-name {
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 4px;
+}
+
+.album-mini-year {
+  font-size: 0.8rem;
+  color: #b3b3b3;
 }
