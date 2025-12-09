@@ -1,0 +1,52 @@
+<div class="player-controls">
+  <div class="player-content">
+    <div class="track-info">
+
+    <div class="player-center">
+      <div class="player-buttons">
+
+        <button class="control-btn secondary" (click)="previous()" title="Anterior">
+          <svg viewBox="0 0 24 24" width="20" height="20">
+            <path fill="currentColor" d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
+          </svg>
+        </button>
+
+        <button class="control-btn primary" (click)="togglePlay()" title="Reproducir/Pausar">
+          <svg *ngIf="!isPlaying" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M8 5v14l11-7z" />
+          </svg>
+          <svg *ngIf="isPlaying" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
+          </svg>
+        </button>
+
+        <button class="control-btn secondary" (click)="next()" title="Siguiente">
+          <svg viewBox="0 0 24 24" width="20" height="20">
+            <path fill="currentColor" d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
+          </svg>
+        </button>
+
+      </div>
+
+      <div class="progress-container">
+        <span class="time">{{ formatTime(currentTime) }}</span>
+        <input
+          type="range"
+          class="progress-bar"
+          min="0"
+          [max]="duration"
+          [value]="currentTime"
+          (input)="seek($event)"
+          [style.background]="
+            'linear-gradient(to right, #00FF7F ' +
+            (currentTime / duration) * 100 +
+            '%, #2A2A2A ' +
+            (currentTime / duration) * 100 +
+            '%)'
+          "
+        />
+        <span class="time">{{ formatTime(duration) }}</span>
+      </div>
+    </div>
+  </div>
+</div>

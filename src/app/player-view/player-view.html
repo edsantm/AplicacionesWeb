@@ -1,0 +1,54 @@
+<div class="player-view-container" *ngIf="currentTrack">
+  <div class="player-content">
+    <div class="art-container">
+      <img [src]="currentTrack.albumImage || 'assets/default-music.png'" alt="Album Art" class="large-album-art">
+    </div>
+
+    <div class="track-details">
+      <h2 class="track-title">{{currentTrack.name}}</h2>
+      <p class="track-artist">{{currentTrack.artistName}}</p>
+    </div>
+
+    <div class="progress-section">
+      <div class="time-info">
+        <span>{{formatTime(currentTime)}}</span>
+        <span>{{formatTime(duration)}}</span>
+      </div>
+      <div class="progress-bar-wrapper">
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" [style.width.%]="(currentTime / duration) * 100"></div>
+          <div class="progress-thumb" [style.left.%]="(currentTime / duration) * 100"></div>
+        </div>
+        <input type="range" class="seek-slider" min="0" [max]="duration" [value]="currentTime" (input)="seek($event)">
+      </div>
+    </div>
+
+    <div class="controls-section">
+      <button class="control-btn secondary" (click)="previous()">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+          <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
+        </svg>
+      </button>
+
+      <button class="control-btn primary play-btn" (click)="togglePlay()">
+        <svg *ngIf="!isPlaying" viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+          <path d="M8 5v14l11-7z" />
+        </svg>
+        <svg *ngIf="isPlaying" viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </svg>
+      </button>
+
+      <button class="control-btn secondary" (click)="next()">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+          <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="no-track-state" *ngIf="!currentTrack">
+    <p>No hay ninguna canción seleccionada</p>
+    <button class="back-btn" routerLink="/search">Buscar Música</button>
+  </div>
+</div>

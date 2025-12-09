@@ -1,0 +1,40 @@
+<div class="song-wrapper">
+  <div class="loading-container" *ngIf="isLoading">
+    <div class="spinner-large"></div>
+    <p class="loading-text">Cargando...</p>
+  </div>
+
+  <div class="error-container" *ngIf="errorMessage && !isLoading">
+    <p class="error-text">{{errorMessage}}</p>
+    <button class="retry-button" (click)="clearError()">Cerrar</button>
+  </div>
+
+  <div class="song-container" *ngIf="currentTrack && !isLoading && !errorMessage">
+    <div class="song-card">
+      <div class="song-image-container">
+        <img 
+          *ngIf="hasImage()"
+          [src]="getImageUrl()" 
+          [alt]="currentTrack.name" 
+          class="song-image"
+        >
+        <div class="play-overlay" *ngIf="hasPreview()">
+          <div class="play-button"></div>
+        </div>
+      </div>
+      
+      <div class="song-details">
+        <h2 class="song-title" [title]="currentTrack.name">{{currentTrack.name}}</h2>
+        <p class="song-artist" [title]="currentTrack.artistName">{{currentTrack.artistName}}</p>
+        <div class="song-meta">
+          <span class="album-name" [title]="currentTrack.albumName">{{currentTrack.albumName}}</span>
+          <span class="duration">{{getDuration()}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-state" *ngIf="!currentTrack && !isLoading && !errorMessage">
+    <p class="empty-text">Busca y selecciona una canción para comenzar</p>
+  </div>
+</div>

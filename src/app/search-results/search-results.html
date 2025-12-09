@@ -1,0 +1,79 @@
+<div class="search-page-container">
+  <div class="search-header">
+    <app-search-bar [overlayResults]="false" [placeholder]="'¿Qué deseas escuchar?'"></app-search-bar>
+  </div>
+
+  <div class="loading-state" *ngIf="isSearching">
+    <div class="spinner-large"></div>
+    <p>Buscando...</p>
+  </div>
+
+  <div class="results-container"
+    *ngIf="searchResults && (searchResults.tracks.length > 0 || searchResults.albums.length > 0 || searchResults.artists.length > 0) && !isSearching">
+
+    <!-- Canciones Section -->
+    <div class="section-block" *ngIf="searchResults.tracks.length > 0">
+      <h2 class="section-title">Canciones</h2>
+      <div class="track-list">
+        <div class="track-item" *ngFor="let track of searchResults.tracks" (click)="selectTrack(track)">
+          <div class="track-left">
+            <img [src]="getImageUrl(track)" alt="Album Art" class="track-art">
+            <div class="track-info">
+              <div class="track-name">{{track.name}}</div>
+              <div class="track-artist">{{track.artistName}}</div>
+            </div>
+          </div>
+          <div class="track-right">
+            <!-- Duration could be added here if available in model clearly -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Artistas Section -->
+    <div class="section-block" *ngIf="searchResults.artists.length > 0">
+      <h2 class="section-title">Artistas</h2>
+      <div class="artist-grid">
+        <div class="artist-card" *ngFor="let artist of searchResults.artists" (click)="selectArtist(artist)">
+          <div class="artist-art-wrapper">
+            <img [src]="getImageUrl(artist)" alt="Artist Profile" class="artist-image">
+          </div>
+          <div class="artist-info">
+            <div class="artist-name">{{artist.name}}</div>
+            <div class="artist-genre">{{artist.genres[0] || 'Artista'}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Albumes Section -->
+    <div class="section-block" *ngIf="searchResults.albums.length > 0">
+      <h2 class="section-title">Álbumes</h2>
+      <div class="album-grid">
+        <div class="album-card" *ngFor="let album of searchResults.albums" (click)="selectAlbum(album)">
+          <div class="album-art-wrapper">
+            <img [src]="getImageUrl(album)" alt="Album Cover" class="album-cover">
+          </div>
+          <div class="album-info">
+            <div class="album-name">{{album.name}}</div>
+            <div class="album-artist">{{album.artistName}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Empty State / Default -->
+  <div class="empty-state"
+    *ngIf="!isSearching && (!searchResults || (!searchResults.tracks.length && !searchResults.albums.length && !searchResults.artists.length))">
+    <div class="empty-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="64" height="64">
+        <path
+          d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+      </svg>
+    </div>
+    <h2>Busca tu música favorita</h2>
+    <p>Encuentra artistas, canciones o álbumes.</p>
+  </div>
+</div>

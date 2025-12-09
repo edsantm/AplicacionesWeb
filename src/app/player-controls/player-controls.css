@@ -1,0 +1,159 @@
+.player-controls {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #F4F4F4;
+  z-index: 1000;
+  padding: 12px 20px;
+  font-family: 'Arial', 'Helvetica', sans-serif;
+}
+
+.player-content {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.player-center {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  gap: 12px;
+  width: 100%; 
+  max-width: 800px; 
+}
+
+.player-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+.control-btn {
+  background: #FFFFFF; 
+  border: 2px solid #111;
+  color: #333;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 3px 3px 0px #AAAAAA; 
+  transition: all 0.1s linear;
+}
+
+.control-btn:hover {
+  background: #EEEEEE;
+}
+
+.control-btn:active {
+  /* Efecto de "presión" */
+  transform: translate(2px, 2px); 
+  box-shadow: 1px 1px 0px #AAAAAA;
+}
+
+.control-btn.primary {
+  background: #D9534F;
+  color: white; 
+  width: 44px; 
+  height: 44px; 
+  border-color: #111;
+  box-shadow: 3px 3px 0px #111; 
+}
+
+.control-btn.primary:hover {
+  transform: scale(1.05); 
+  background: #E0635F;
+  color: white;
+}
+
+.control-btn.primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #111; 
+}
+
+.control-btn.secondary {
+  width: 36px; 
+  height: 36px;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 12px; 
+  width: 100%; 
+}
+
+.time {
+  font-size: 13px;
+  color: #555;
+  min-width: 40px; 
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 14px; 
+  -webkit-appearance: none;
+  appearance: none;
+  
+  background: transparent; 
+  
+  border-radius: 0; 
+  outline: none;
+  cursor: pointer;
+  border: 2px solid #111; 
+}
+
+.progress-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px; 
+  height: 22px; 
+  background: #111; 
+  border-radius: 0; 
+  cursor: pointer;
+  opacity: 1; 
+  margin-top: -6px; 
+}
+
+.progress-bar:hover::-webkit-slider-thumb {
+  background: #D9534F; 
+}
+
+.progress-bar::-moz-range-track {
+  background: #DDDDDD; 
+  border-radius: 0;
+  height: 10px;
+  border: none;
+}
+
+.progress-bar::-moz-range-progress {
+  background-color: #D9534F; 
+  height: 10px;
+  border-radius: 0;
+}
+
+
+.progress-bar::-moz-range-thumb {
+  width: 12px;
+  height: 22px; 
+  background: #111;
+  border-radius: 0;
+  border: none;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.progress-bar:hover::-moz-range-thumb {
+  background: #D9534F;
+}

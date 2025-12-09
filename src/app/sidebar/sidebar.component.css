@@ -1,0 +1,73 @@
+:host {
+    display: block;
+    height: 100%;
+    width: 250px;
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar {
+    padding: 24px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    color: var(--text-primary);
+}
+
+.logo-icon {
+    background: var(--accent-color);
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-links li a {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.nav-links li a:hover {
+    color: var(--text-primary);
+    background-color: var(--hover-bg);
+}
+
+.nav-links li a.active {
+    background-color: var(--card-bg);
+    color: var(--accent-color);
+    border-left: 3px solid var(--accent-color);
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+}

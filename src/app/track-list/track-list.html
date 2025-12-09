@@ -1,0 +1,39 @@
+<div class="home-container">
+  <div class="header">
+    <div class="header-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+        <path
+          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14.5c-2.49 0-4.5-2.01-4.5-4.5S9.51 7.5 12 7.5s4.5 2.01 4.5 4.5-2.01 4.5-4.5 4.5zm0-5.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z" />
+      </svg>
+    </div>
+    <h1>Explorar Música</h1>
+  </div>
+
+  <div class="track-list-container" *ngIf="hasTracks() && !isLoading">
+    <h3 class="section-subtitle">Recomendado para ti</h3>
+    <div class="track-list">
+      <div class="track-item" *ngFor="let track of tracks; let i = index" [class.active]="isCurrentTrack(track)"
+        (click)="selectTrack(track)">
+        <div class="track-left">
+          <img [src]="track.albumImage || 'assets/default-music.png'" alt="Album Art" class="album-art">
+          <div class="track-info">
+            <div class="track-name" [title]="track.name">{{track.name}}</div>
+            <div class="track-artist" [title]="track.artistName">{{track.artistName}}</div>
+          </div>
+        </div>
+
+        <div class="track-right">
+          <div class="track-duration">{{getDuration(track.duration)}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-state" *ngIf="!hasTracks() && !isLoading">
+    <p>Cargando recomendaciones...</p> <!-- Should hopefully not show for long if we fetch data -->
+  </div>
+
+  <div class="loading-state" *ngIf="isLoading">
+    <div class="spinner"></div>
+  </div>
+</div>

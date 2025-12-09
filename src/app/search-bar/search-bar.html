@@ -1,0 +1,54 @@
+<div class="search-container" (focusout)="closeResults()">
+  <form class="search-box" (ngSubmit)="performSearch()">
+    <input type="text" [placeholder]="placeholder" (input)="onSearch($event)" (focus)="onSearch($event)"
+      class="search-input" autocomplete="off" [(ngModel)]="currentSearchTerm" name="searchTerm">
+  </form>
+
+  <div class="search-results" *ngIf="showResults && overlayResults">
+    <div class="loading" *ngIf="isSearching">
+      <div class="spinner"></div>
+      <span>Buscando...</span>
+    </div>
+
+    <div class="error-message" *ngIf="searchError && !isSearching">
+      <span class="error-icon"></span>
+      <span>{{searchError}}</span>
+    </div>
+
+    <div *ngIf="!isSearching && !searchError && searchResults.hasResults">
+      <div class="result-section" *ngIf="searchResults.tracks.length > 0">
+        <h4 class="section-title">Canciones</h4>
+        <div class="result-item" *ngFor="let track of searchResults.tracks" (mousedown)="selectTrack(track)">
+          <img *ngIf="hasImage(track)" [src]="getImageUrl(track)" [alt]="track.name" class="result-img">
+          <div class="result-info">
+            <div class="result-name">{{track.name}}</div>
+            <div class="result-artist">{{track.artistName}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-section" *ngIf="searchResults.albums.length > 0">
+        <h4 class="section-title">Álbumes</h4>
+        <div class="result-item" *ngFor="let album of searchResults.albums" (mousedown)="selectAlbum(album)">
+          <img *ngIf="hasImage(album)" [src]="getImageUrl(album)" [alt]="album.name" class="result-img">
+          <div class="result-info">
+            <div class="result-name">{{album.name}}</div>
+            <div class="result-artist">{{album.artistName}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-section" *ngIf="searchResults.artists.length > 0">
+        <h4 class="section-title">Artistas</h4>
+        <div class="result-item" *ngFor="let artist of searchResults.artists" (mousedown)="selectArtist(artist)">
+          <img *ngIf="hasImage(artist)" [src]="getImageUrl(artist)" [alt]="artist.name" class="result-img artist-img">
+          <div class="result-img-placeholder artist-img" *ngIf="!hasImage(artist)"></div>
+          <div class="result-info">
+            <div class="result-name">{{artist.name}}</div>
+            <div class="result-artist">Artista</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

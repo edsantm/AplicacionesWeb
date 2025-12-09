@@ -1,0 +1,209 @@
+/* --- ESTILO RADICAL: "Minimalista/Brutalista" Claro --- */
+
+/* --- Contenedor Principal y Caja de Búsqueda --- */
+
+.search-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: 'Arial', 'Helvetica', sans-serif; /* Fuente dura */
+}
+
+.search-box {
+  position: relative;
+  width: 100%;
+}
+
+.search-input {
+  width: 100%;
+  padding: 14px 20px; /* Relleno simple */
+  font-size: 16px;
+  
+  /* Estilo Claro y Duro */
+  background: #FFFFFF;
+  color: #111; /* Texto oscuro */
+  border: 2px solid #111; /* Borde principal */
+  
+  border-radius: 0; /* ¡Sin bordes redondeados! */
+  outline: none;
+  transition: none; /* Sin transiciones suaves */
+  box-shadow: 4px 4px 0px #111; /* Sombra dura */
+}
+
+.search-input:focus {
+  border-color: #D9534F; /* Acento Rojo/Coral al enfocar */
+  /* Anillo de foco sólido, no un resplandor */
+  box-shadow: 0 0 0 2px #D9534F; 
+}
+
+.search-input::placeholder {
+    color: #888; /* Placeholder más oscuro */
+}
+
+
+/* --- Contenedor de Resultados Sólido --- */
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  
+  /* Diseño de Bloque Sólido */
+  background: #FFFFFF; /* Fondo blanco sólido */
+  backdrop-filter: none; /* Sin desenfoque */
+  border-radius: 0; /* Sin bordes redondeados */
+  border: 2px solid #111; /* Borde duro */
+  box-shadow: 5px 5px 0px #111; /* Sombra dura */
+  
+  margin-top: 14px; /* Espacio para la sombra del input */
+  max-height: 500px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+/* --- Estados de Carga y Error --- */
+
+.loading {
+  padding: 20px;
+  text-align: center;
+  color: #111; /* Texto oscuro */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #DDD; /* Gris claro base */
+  border-top: 3px solid #D9534F; /* Color Rojo/Coral */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  padding: 20px;
+  text-align: center;
+  color: #D9534F; /* Rojo de error */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* --- Elementos de Resultado --- */
+
+.result-section {
+  border-bottom: 2px solid #111; /* Separador duro y grueso */
+}
+
+.result-section:last-child {
+  border-bottom: none;
+}
+
+.section-title {
+  padding: 12px 20px 8px;
+  margin: 0;
+  font-size: 12px; /* Título más legible */
+  font-weight: 700;
+  color: #111; /* Título oscuro */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.result-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.1s linear; /* Transición rápida */
+}
+
+.result-item:hover {
+  background-color: #F0F0F0; /* Hover simple en fondo claro */
+}
+
+/* --- Imágenes --- */
+
+.result-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 0; /* Bordes cuadrados */
+  object-fit: cover;
+  margin-right: 12px; /* Espacio ajustado */
+  background: #DDDDDD; /* Fondo de placeholder claro */
+}
+
+.result-img-placeholder {
+  width: 48px;
+  height: 48px;
+  border-radius: 0; /* Cuadrado */
+  margin-right: 12px;
+  background: #DDDDDD;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #555;
+}
+
+.artist-img {
+  border-radius: 0; /* ¡CAMBIO RADICAL: Artistas cuadrados! */
+}
+
+/* --- Información del Resultado --- */
+
+.result-info {
+  flex: 1;
+  overflow: hidden;
+}
+
+.result-name {
+  font-size: 15px;
+  font-weight: 700; /* Más audaz */
+  color: #111; /* Texto oscuro */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.result-item:hover .result-name {
+  color: #D9534F; /* Destacar nombre con acento rojo al hacer hover */
+}
+
+.result-artist {
+  font-size: 13px;
+  color: #555; /* Texto secundario más oscuro */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --- Scrollbar Claro --- */
+
+.search-results::-webkit-scrollbar {
+  width: 10px; /* Scrollbar más "funcional" */
+}
+
+.search-results::-webkit-scrollbar-track {
+  background: #F0F0F0; 
+  border-radius: 0;
+}
+
+.search-results::-webkit-scrollbar-thumb {
+  background: #AAAAAA; 
+  border-radius: 0;
+  border: 2px solid #F0F0F0; /* Borde del color del track */
+}
+
+.search-results::-webkit-scrollbar-thumb:hover {
+  background: #888888;
+}

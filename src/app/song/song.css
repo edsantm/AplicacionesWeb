@@ -1,0 +1,235 @@
+/* --- ESTILO RADICAL: "Minimalista/Brutalista" Claro --- */
+
+.song-wrapper {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto; 
+  font-family: 'Arial', 'Helvetica', sans-serif; /* Fuente dura */
+}
+
+/* --- ESTADO DE CARGA --- */
+.loading-container {
+  background: #FFFFFF; /* Fondo blanco */
+  border-radius: 0; /* Sin bordes redondeados */
+  border: 2px solid #111; /* Borde duro */
+  box-shadow: 5px 5px 0px #111; /* Sombra dura */
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.spinner-large {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #DDDDDD; /* Base gris clara */
+  border-top: 4px solid #D9534F; /* Acento Rojo/Coral */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  margin: 0;
+  font-size: 16px;
+  color: #555; /* Texto oscuro */
+}
+
+/* --- ESTADO DE ERROR --- */
+.error-container {
+  background: #FFFFFF;
+  border-radius: 0;
+  border: 2px solid #111;
+  box-shadow: 5px 5px 0px #111;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.error-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  color: #D9534F; /* Acento Rojo/Coral */
+}
+
+.error-text {
+  margin: 0 0 20px 0;
+  font-size: 16px;
+  color: #111; /* Texto oscuro */
+}
+
+.retry-button {
+  padding: 12px 30px; 
+  background: #D9534F; /* Acento Rojo/Coral */
+  color: #FFFFFF; /* Texto blanco */
+  border: 2px solid #111; /* Borde duro */
+  border-radius: 0; /* Cuadrado */
+  font-size: 15px;
+  font-weight: 700; /* Más audaz */
+  cursor: pointer;
+  transition: all 0.1s linear;
+  box-shadow: 3px 3px 0px #111; /* Sombra dura */
+}
+
+.retry-button:hover {
+  background: #E0635F; /* Rojo más claro */
+  transform: none; /* Sin movimiento vertical */
+  box-shadow: 4px 4px 0px #111; /* Sombra crece */
+}
+
+.retry-button:active {
+  /* Efecto de hundimiento */
+  transform: translate(2px, 2px); 
+  box-shadow: 1px 1px 0px #111; 
+}
+
+/* --- VISTA DE CANCIÓN --- */
+.song-container {
+  width: 100%;
+}
+
+.song-card {
+  background: #FFFFFF;
+  border-radius: 0;
+  border: 2px solid #111;
+  box-shadow: 5px 5px 0px #111;
+  overflow: hidden;
+  transition: all 0.1s linear;
+}
+
+.song-card:hover {
+  /* Efecto de "salto" de la tarjeta */
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0px #111;
+}
+
+/* --- Imagen y Overlay de Reproducción --- */
+.song-image-container {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  overflow: hidden;
+  background: #DDDDDD; /* Fondo de placeholder claro */
+  /* Sin bordes redondeados */
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.song-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.play-overlay {
+  background: rgba(255, 255, 255, 0.5); /* Overlay claro */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.1s linear; /* Transición rápida */
+}
+
+.song-image-container:hover .play-overlay {
+  opacity: 1;
+}
+
+.play-button {
+  width: 60px;
+  height: 60px;
+  background: #D9534F; /* Acento Rojo/Coral */
+  border-radius: 0; /* ¡Botón cuadrado! */
+  color: #FFFFFF; /* Icono blanco */
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.1s linear;
+  padding-left: 0; /* Resetear padding */
+  border: 2px solid #111; /* Borde duro */
+  box-shadow: 3px 3px 0px #111; /* Sombra dura */
+}
+
+.play-button:hover {
+  transform: scale(1.05);
+  box-shadow: 4px 4px 0px #111; 
+}
+
+.play-button:active {
+  transform: translate(2px, 2px) scale(1); /* Efecto de presión */
+  box-shadow: 1px 1px 0px #111; 
+}
+
+
+.song-details {
+  padding: 20px;
+}
+
+.song-title {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  font-weight: 900; /* Más audaz */
+  color: #111; /* Texto oscuro */
+}
+
+.song-artist {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  color: #555; /* Texto secundario oscuro */
+  transition: color 0.1s linear;
+}
+
+.song-artist:hover {
+  color: #D9534F; /* Acento Rojo/Coral */
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.song-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 2px solid #111; /* Borde más grueso */
+}
+
+.album-name {
+  font-size: 13px;
+  color: #666;
+}
+
+.duration {
+  font-size: 13px;
+  color: #666;
+  font-weight: 500;
+}
+
+/* --- ESTADO VACÍO --- */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  background: #FFFFFF;
+  border-radius: 0;
+  border: 2px solid #111;
+  box-shadow: 5px 5px 0px #111;
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+  opacity: 1; /* Sin opacidad */
+  color: #888; /* Color sólido */
+}
+
+.empty-text {
+  font-size: 16px;
+  color: #555; /* Texto oscuro */
+  margin: 0;
+}
